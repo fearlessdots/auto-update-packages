@@ -28,10 +28,12 @@ finish_program()
 if [ "$1" -eq 0 ]
 then
 	show_info "Disabling autoupdatepackages service"
+	systemctl disable autoupdatepackages.service
 	finish_program 0
 elif [ "$1" -eq 1 ]
 then
 	show_info "Enabling autoupdatepackages service"
+	systemctl enable autoupdatepackages.service
 	finish_program 1
 else
 	show_attention "Invalid argument"

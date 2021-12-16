@@ -9,7 +9,7 @@
 PROGRAM_DIR=/usr/share/auto-update-packages
 EXEC_DIR=/usr/bin
 LOG_DIR="$PROGRAM_DIR/logs"
-SYMD_DIR="/etc/systemd/system"
+SYSMD_DIR="/etc/systemd/system"
 
 # Shell display functions
 show_info(){

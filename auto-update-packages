@@ -35,12 +35,15 @@ then
 	$PROGRAM_DIR/bin/uninstall
 	finish_program 0
 elif [ "$1" = 'disable' ]
+then
 	$PROGRAM_DIR/bin/service-control 0
 	finish_program 0
 elif [ "$1" = 'enable' ]
+then
 	$PROGRAM_DIR/bin/service-control 1
 	finish_program 0
 elif [ "$1" = 'version' ]
+then
 	cat $PROGRAM_DIR/version
 	finish_program 0
 else

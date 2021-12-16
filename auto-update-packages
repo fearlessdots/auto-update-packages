@@ -31,6 +31,7 @@ then
 	echo "enable - enable systemd service on boot"
 	echo "disable - disable systemd service on boot"
 	echo "version - display installed program's version"
+	finish_program 0
 elif [ "$1" = 'uninstall' ]
 then
 	$PROGRAM_DIR/bin/uninstall

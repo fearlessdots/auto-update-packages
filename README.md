@@ -18,6 +18,7 @@ This software can be used on personal computers, server or anything else that me
 ## Systemd service
 To disable the systemd service, run:
 `auto-update-packages disable`
+
 And to enable it:
 `auto-update-packages enable`
 

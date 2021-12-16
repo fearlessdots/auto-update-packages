@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# GitHub repository: https://github.com/fearlessdots/auto-update-packages
+# RUN THIS SCRIPT AS ROOT
+# Valid arguments:
+# 0 ==> disable autoupdatepackages.service
+# 1 ==> enable autoupdatepackages.service
+
+# Shell display functions
+show_info(){
+	echo "[  AutoUpdatePackages  ] $1"
+}
+
+show_attention(){
+	echo "[ ATTENTION ] $1"
+}
+
+finish_program()
+{
+	# $1 is the exit code
+	exit $1
+}
+
+#
+##
+#
+
+if [ "$1" -eq 0 ]
+then
+	show_info "Disabling autoupdatepackages service"
+	finish_program 0
+elif [ "$1" -eq 1 ]
+then
+	show_info "Enabling autoupdatepackages service"
+	finish_program 1
+else
+	show_attention "Invalid argument"
+	finish_program 1
+fi

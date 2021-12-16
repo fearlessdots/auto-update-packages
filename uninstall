@@ -1,0 +1,67 @@
+#!/bin/bash
+
+# GitHub repository: https://github.com/fearlessdots/auto-update-packages
+# RUN THIS SCRIPT AS ROOT
+# Warning: changing the values of the variables in this script may render it unworkable.
+
+# The values below refer to the installation directories. If needed to change them,
+# do it cautiously.
+PROGRAM_DIR=/usr/share/auto-update-packages
+EXEC_DIR=/usr/bin
+LOG_DIR="$PROGRAM_DIR/logs"
+SYMD_DIR="/etc/systemd/system"
+
+# Shell display functions
+show_info(){
+	echo "[  AutoUpdatePackages  ] $1"
+}
+
+show_attention(){
+	echo "[ ATTENTION ] $1"
+}
+
+finish_program()
+{
+	# $1 is the exit code
+	exit $1
+}
+
+#
+##
+#
+
+show_info "Running uninstallation script..."
+
+sleep 1
+
+if [ -d $PROGRAM_DIR ]
+then
+	rm -rf $PROGRAM_DIR
+	show_info "Configuration directory removed"
+else
+	show_attention "Configuration directory not found!"
+fi
+
+sleep 1
+
+if [ -f $EXEC_DIR/auto-update-packages ]
+then
+	rm $EXEC_DIR/auto-update-packages
+	show_info "Executable removed"
+else
+	show_attention "Executable not found!"
+fi
+
+sleep 1
+
+if [ -f $SYMD_DIR/auto-update-packages ]
+then
+	systemctl disable auto-update-packages
+	systemctl stop auto-update-packages
+	rm $SYMD_DIR/auto-update-packages
+	show_info "Systemd service disabled and removed"
+else
+	show_attention "Systemd service not found!"
+fi
+
+finish_program 0

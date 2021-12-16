@@ -20,6 +20,7 @@ To disable the systemd service, run:
 `auto-update-packages disable`
 And to enable it:
 `auto-update-packages enable`
+
 **Note:** during installation, the systemd service is enabled by default.
 
 ## Uninstallation

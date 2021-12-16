@@ -57,7 +57,7 @@ fi
 
 if [ -f $SYSMD_DIR/autoupdatepackages.service ]
 then
-	rm $SYSMD_DIR/autopackagesupdate.service
+	rm $SYSMD_DIR/autoupdatepackages.service
 fi
 
 if [ -f $EXEC_DIR/auto-update-packages ]

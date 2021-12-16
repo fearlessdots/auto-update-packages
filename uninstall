@@ -54,11 +54,11 @@ fi
 
 sleep 1
 
-if [ -f $SYMD_DIR/auto-update-packages ]
+if [ -f $SYSMD_DIR/autoupdatepackages.service ]
 then
-	systemctl disable auto-update-packages
-	systemctl stop auto-update-packages
-	rm $SYMD_DIR/auto-update-packages
+	systemctl disable autoupdatepackages.service
+	systemctl stop autoupdatepackages.service
+	rm $SYSMD_DIR/autoupdatepackages.service
 	show_info "Systemd service disabled and removed"
 else
 	show_attention "Systemd service not found!"

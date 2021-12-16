@@ -6,6 +6,7 @@
 
 PROGRAM_DIR=/usr/share/auto-update-packages
 LOG_DIR="$PROGRAM_DIR/logs"
+LOGS_LIMIT=30
 
 # Shell display functions
 show_info(){
@@ -44,10 +45,8 @@ then
 	finish_program 0
 elif [ "$1" = 'version' ]
 then
-	cat $PROGRAM_DIR/version
+	cat $PROGRAM_DIR/VERSION
 	finish_program 0
-else
-	show_attention "Invalid argument!"
 fi
 
 # Main funtions
@@ -71,7 +70,7 @@ verify_log_dir() {
 }
 
 dpkg_management() {
-    write_to_log "[  AutoStartup  ] Updating packages via apt..."
+    write_to_log "Updating packages via apt..."
     sleep 1
     apt update -y >> $LOG_FILE 2> /dev/null
     sleep 2
@@ -88,11 +87,11 @@ dpkg_management() {
 }
 
 package_management() {
-    write_to_log "[  AutoStartup  ] Running system package management"
+    write_to_log "Running system package management"
     sleep 1
     dpkg_management
     sleep 1
-    write_to_log "[  AutoStartup  ] Finished system package management"
+    write_to_log "Finished system package management"
 }
 
 #
@@ -112,16 +111,16 @@ LOG_FILE="$LOG_DIR/$TOKEN.log"
 verify_log_dir
 
 # Print log file header
-write_to_log "AUTOSTARTUP LOG FILE"
+write_to_log "AUTOUPDATEPACKAGES LOG FILE"
 write_to_log ""
 DATE=$(date)
 write_to_log "$DATE"
 write_to_log ""
 
 # Run main function
-write_to_log "[  AutoStartup  ] Initializing AutoStartup script..."
+write_to_log "Initializing AutoStartup script..."
 package_management
-write_to_log "[  AutoStartup  ] AutoStartup program finished!"
+write_to_log "AutoStartup program finished!"
 
 sleep 2
 

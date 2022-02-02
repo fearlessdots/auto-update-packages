@@ -67,7 +67,7 @@ fi
 
 sleep 2
 
-show_info "Moving execuable to $EXEC_DIR"
+show_info "Moving executable to $EXEC_DIR"
 cp auto-update-packages $EXEC_DIR
 chown -R root:root $EXEC_DIR/auto-update-packages
 chmod 755 $EXEC_DIR/auto-update-packages

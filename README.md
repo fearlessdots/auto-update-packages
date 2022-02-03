@@ -1,7 +1,5 @@
 # auto-update-packages
 
-**This program probably is not yet totally documented**
-
 This program was made to help automatically update system packages managed by dpkg using its frontend (apt) on every boot. This is done by using a systemd service file. 
 
 **Note:** this is only a personal project, and it is released under the GNU General Public License, Version 2.

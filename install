@@ -8,16 +8,21 @@
 # do it cautiously.
 PROGRAM_DIR=/usr/share/auto-update-packages
 EXEC_DIR=/usr/bin
-LOG_DIR="$PROGRAM_DIR/logs"
-SYSMD_DIR="/usr/lib/systemd/system"
+LOG_DIR=$PROGRAM_DIR/logs
+SYSMD_DIR=/usr/lib/systemd/system
 
 # Shell display functions
 show_info(){
-	echo "[  AutoUpdatePackages  ] $1"
+	echo "$(tput setaf 26)[  AutoUpdatePackages  ]$(tput sgr0) $(tput setaf 250)$1$(tput sgr0)"
 }
 
-show_attention(){
-	echo "[ ATTENTION ] $1"
+show_attention()
+{
+	echo "$(tput setaf 9)[ ATTENTION ]$(tput sgr0) $(tput setaf 7)$1$(tput sgr0)"
+}
+
+show_success(){
+	echo "$(tput setaf 14)[ SUCCESS ]$(tput sgr0) $(tput setaf 26)$1$(tput sgr0)"
 }
 
 finish_program()
@@ -35,9 +40,8 @@ show_info "Verifying if program is already installed"
 
 if [ -d $PROGRAM_DIR ]
 then
-	show_attention "Program directory already exists in $PROGRAM_DIR. If you continue, everything
-	inside it will be overwritten. Type 'aware' to continue with the installation process. Any
-	other character will cancel this installation"
+	show_attention """Program directory already exists in $PROGRAM_DIR. If you continue, everything inside it will be overwritten. 
+Type $(tput setaf 11)aware$(tput setaf 250) to continue with the installation process. Any other character will cancel this installation"""
 	read CONTINUE
 	if [ ! "$CONTINUE" = 'aware' ]
 	then
@@ -92,6 +96,6 @@ systemctl enable autoupdatepackages.service
 
 sleep 1
 
-show_info "Program installed succesfully!"
+show_success "Program installed succesfully!"
 
 finish_program 0

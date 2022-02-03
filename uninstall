@@ -8,16 +8,21 @@
 # do it cautiously.
 PROGRAM_DIR=/usr/share/auto-update-packages
 EXEC_DIR=/usr/bin
-LOG_DIR="$PROGRAM_DIR/logs"
-SYSMD_DIR="/usr/lib/systemd/system"
+LOG_DIR=$PROGRAM_DIR/logs
+SYSMD_DIR=/usr/lib/systemd/system
 
 # Shell display functions
 show_info(){
-	echo "[  AutoUpdatePackages  ] $1"
+	echo "$(tput setaf 26)[  AutoUpdatePackages  ]$(tput sgr0) $(tput setaf 250)$1$(tput sgr0)"
 }
 
-show_attention(){
-	echo "[ ATTENTION ] $1"
+show_attention()
+{
+	echo "$(tput setaf 9)[ ATTENTION ]$(tput sgr0) $(tput setaf 7)$1$(tput sgr0)"
+}
+
+show_success(){
+	echo "$(tput setaf 14)[ SUCCESS ]$(tput sgr0) $(tput setaf 26)$1$(tput sgr0)"
 }
 
 finish_program()
@@ -37,7 +42,7 @@ sleep 1
 if [ -d $PROGRAM_DIR ]
 then
 	rm -rf $PROGRAM_DIR
-	show_info "Configuration directory removed"
+	show_success "Configuration directory removed"
 else
 	show_attention "Configuration directory not found!"
 fi
@@ -47,7 +52,7 @@ sleep 1
 if [ -f $EXEC_DIR/auto-update-packages ]
 then
 	rm $EXEC_DIR/auto-update-packages
-	show_info "Executable removed"
+	show_success "Executable removed"
 else
 	show_attention "Executable not found!"
 fi
@@ -59,7 +64,7 @@ then
 	systemctl disable autoupdatepackages.service
 	systemctl stop autoupdatepackages.service
 	rm $SYSMD_DIR/autoupdatepackages.service
-	show_info "Systemd service disabled and removed"
+	show_success "Systemd service disabled and removed"
 else
 	show_attention "Systemd service not found!"
 fi

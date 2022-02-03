@@ -8,11 +8,12 @@
 
 # Shell display functions
 show_info(){
-	echo "[  AutoUpdatePackages  ] $1"
+	echo "$(tput setaf 26)[  AutoUpdatePackages  ]$(tput sgr0) $(tput setaf 250)$1$(tput sgr0)"
 }
 
-show_attention(){
-	echo "[ ATTENTION ] $1"
+show_attention()
+{
+	echo "$(tput setaf 9)[ ATTENTION ]$(tput sgr0) $(tput setaf 7)$1$(tput sgr0)"
 }
 
 finish_program()

@@ -6,7 +6,7 @@ After=network-online.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/auto-update-packages update
+ExecStart=/usr/bin/auto-update-packages update systemd
 Restart=on-failure
 RestartSec=35
 KillMode=process

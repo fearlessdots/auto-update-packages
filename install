@@ -49,6 +49,7 @@ Type $(tput setaf 11)aware$(tput setaf 250) to continue with the installation pr
 		finish_program 1
 	else
 		show_info "Carrying on with the installation process..."
+		./uninstall
 	fi
 fi
 

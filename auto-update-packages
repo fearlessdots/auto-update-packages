@@ -10,12 +10,22 @@ LOGS_LIMIT=30
 
 # Shell display functions
 show_info(){
-	echo "$(tput setaf 26)[  AutoUpdatePackages  ]$(tput sgr0) $(tput setaf 250)$1$(tput sgr0)"
+	if [ ! "$PARAMETER" = 'systemd' ]
+	then
+		echo "$(tput setaf 26)[  AutoUpdatePackages  ]$(tput sgr0) $(tput setaf 250)$1$(tput sgr0)"
+	else
+		echo "[  AutoUpdatePackages  ] $1"
+	fi
 }
 
 show_attention()
 {
-	echo "$(tput setaf 9)[ ATTENTION ]$(tput sgr0) $(tput setaf 7)$1$(tput sgr0)"
+	if [ ! "$PARAMETER" = 'systemd' ]
+	then
+		echo "$(tput setaf 9)[ ATTENTION ]$(tput sgr0) $(tput setaf 7)$1$(tput sgr0)"
+	else
+		echo "[  ATTENTION  ] $1"
+	fi
 }
 
 finish_program()
@@ -23,6 +33,8 @@ finish_program()
 	# $1 is the exit code
 	exit $1
 }
+
+PARAMETER=$2
 
 # Arguments
 if [ "$1" = 'help' ]
